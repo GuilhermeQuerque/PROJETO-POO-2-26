@@ -14,13 +14,14 @@ class Aluno {
     this.#nota3 = nota3;
   }
 
-  gerarMedia(nota1, nota2, nota3) {
-    let m = (nota1 + nota2 + nota3) / 3;
+  gerarMedia() {
+    let m = (this.getNota1() + this.getNota2() + this.getNota3()) / 3;
     this.media = m;
     return m;
   }
 
-  gerarEstado(media) {
+  gerarEstado() {
+    let media=this.gerarMedia();
     let est;
     if (media >= 6) {
       est = 'Aprovado';

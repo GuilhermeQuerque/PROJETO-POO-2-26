@@ -13,9 +13,16 @@ class Interface {
       alert("Por favor, selecione uma turma primeiro!");
       return;
     }
+    if (!nome){
+      alert("Insira seu nome antes de salvar!")
+      return;
+    }
+    
       let a1 = new Aluno(nome, n1, n2, n3);
-      let m = a1.gerarMedia(n1, n2, n3);
-      a1.gerarEstado(m);
+      let m = a1.gerarMedia();
+      a1.gerarEstado();
+      let turmaSelecionada = turmas[indexTurmaSelecionada];
+      turmaSelecionada.adicionarAluno(a1);
   
       alert('aluno cadastrado');
       return a1;
@@ -74,7 +81,7 @@ class Interface {
       if (tabTurma) tabTurma.classList.remove('active');
   
       let lista = '<table>';
-      lista += '<tr><th>Nome</th><th>Nota 1</th><th>Nota 2</th><th>Nota 3</th><th>Média</th><th>Situação</th></tr>';  
+      lista += '<tr><th>Nome</th><th>Nota 1</th><th>Nota 2</th><th>Nota 3</th><th>Média</th><th>Situação</th><th>Ações</th></tr>';  
       for (let i = 0; i < turma.length; i++) {
         lista +=
           '<tr>' +
@@ -84,6 +91,7 @@ class Interface {
           '<td>' + turma[i].getNota3() + '</td>' +
           '<td>' + turma[i].media.toFixed(2) + '</td>' +
           '<td>' + turma[i].estado + '</td>' +
+          '<td>' +  '<button onclick="editarAluno(' + i + ')"> Editar</button>' + '</td>' +
           '</tr>';
       }
   
